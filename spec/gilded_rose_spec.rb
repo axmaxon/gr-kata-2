@@ -76,7 +76,7 @@ RSpec.describe GildedRose::AgedBrie do
   end
 end
 
-RSpec.describe GildedRose::Backstage do
+RSpec.describe GildedRose::BackstagePass do
   describe '#update_quality' do
     let(:name) { 'Backstage passes to a TAFKAL80ETC concert' }
     let(:backstage_passes_1) { GildedRose.for(name, 11, 25) }

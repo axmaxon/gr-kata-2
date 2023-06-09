@@ -28,8 +28,8 @@ end
 
   items.each do |item|
     puts item
+    item.update_quality
   end
 
   puts
-  items.each do |item| item.update_quality end
 end

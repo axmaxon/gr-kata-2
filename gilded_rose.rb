@@ -33,7 +33,7 @@ module GildedRose
     end
   end
 
-  class Backstage < Item
+  class BackstagePass < Item
     def update_quality
       if @quality < 50
         case @sell_in
@@ -71,7 +71,7 @@ module GildedRose
   DEFAULT_CLASS = Item
   SPECIALIZED_CLASSES = {
     'Aged Brie' => AgedBrie,
-    'Backstage passes to a TAFKAL80ETC concert' => Backstage,
+    'Backstage passes to a TAFKAL80ETC concert' => BackstagePass,
     'Sulfuras, Hand of Ragnaros' => Sulfuras,
     'Conjured Mana Cake' => Conjured
   }
