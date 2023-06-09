@@ -1,24 +1,24 @@
 require_relative '../gilded_rose'
+include GildedRose
 
 RSpec.describe GildedRose do
-  describe '#update_quality' do
+  describe 'quality update' do
     it "does not change the name" do
-      items = [Item.new("foo", 0, 0)]
-      GildedRose.new(items).update_quality()
-      expect(items[0].name).to eq "foo"
+      item = GildedRose.for("foo", 0, 0)
+      item.update_quality
+      expect(item.name).to eq "foo"
     end
 
     context 'when the item is a regular item' do
-      let(:regular_item_1) { Item.new('Regular Item', 2, 25) }
-      let(:regular_item_2) { Item.new('Regular Item', 0, 25) }
-      let(:regular_item_3) { Item.new('Regular Item', -1, 25) }
-      let(:regular_item_4) { Item.new('Regular Item', 2, 0) }
-      let(:regular_item_5) { Item.new('Regular Item', -1, 1) }
+      let(:regular_item_1) { GildedRose.for('Regular Item', 2, 25) }
+      let(:regular_item_2) { GildedRose.for('Regular Item', 0, 25) }
+      let(:regular_item_3) { GildedRose.for('Regular Item', -1, 25) }
+      let(:regular_item_4) { GildedRose.for('Regular Item', 2, 0) }
+      let(:regular_item_5) { GildedRose.for('Regular Item', -1, 1) }
 
       before do
-        gilded_rose = GildedRose.new([regular_item_1, regular_item_2, regular_item_3,
-                                      regular_item_4, regular_item_5])
-        gilded_rose.update_quality
+        items = [regular_item_1, regular_item_2, regular_item_3, regular_item_4, regular_item_5]
+        items.each { |item| item.update_quality }
       end
 
       context 'when sell_in is greater than 0' do
@@ -48,14 +48,14 @@ RSpec.describe GildedRose do
     end
 
     context 'when the item is Aged Brie' do
-      let(:aged_brie_1) { Item.new('Aged Brie', 2, 25) }
-      let(:aged_brie_2) { Item.new('Aged Brie', 2, 50) }
-      let(:aged_brie_3) { Item.new('Aged Brie', 0, 25) }
-      let(:aged_brie_4) { Item.new('Aged Brie', -1, 25) }
+      let(:aged_brie_1) { GildedRose.for('Aged Brie', 2, 25) }
+      let(:aged_brie_2) { GildedRose.for('Aged Brie', 2, 50) }
+      let(:aged_brie_3) { GildedRose.for('Aged Brie', 0, 25) }
+      let(:aged_brie_4) { GildedRose.for('Aged Brie', -1, 25) }
 
       before do
-        gilded_rose = GildedRose.new([aged_brie_1, aged_brie_2, aged_brie_3, aged_brie_4])
-        gilded_rose.update_quality
+        items = [aged_brie_1, aged_brie_2, aged_brie_3, aged_brie_4]
+        items.each { |item| item.update_quality }
       end
 
       context 'when sell_in is greater than 0' do
@@ -79,21 +79,21 @@ RSpec.describe GildedRose do
     end
 
     context 'when the item is Backstage passes' do
-      let(:backstage_passes_1) { Item.new('Backstage passes to a TAFKAL80ETC concert', 11, 25) }
-      let(:backstage_passes_2) { Item.new('Backstage passes to a TAFKAL80ETC concert', 10, 25) }
-      let(:backstage_passes_3) { Item.new('Backstage passes to a TAFKAL80ETC concert', 6, 25) }
-      let(:backstage_passes_4) { Item.new('Backstage passes to a TAFKAL80ETC concert', 5, 25) }
-      let(:backstage_passes_5) { Item.new('Backstage passes to a TAFKAL80ETC concert', 1, 25) }
-      let(:backstage_passes_6) { Item.new('Backstage passes to a TAFKAL80ETC concert', 0, 25) }
-      let(:backstage_passes_7) { Item.new('Backstage passes to a TAFKAL80ETC concert', -1, 25) }
-      let(:backstage_passes_8) { Item.new('Backstage passes to a TAFKAL80ETC concert', 7, 49) }
-      let(:backstage_passes_9) { Item.new('Backstage passes to a TAFKAL80ETC concert', 2, 48) }
+      let(:backstage_passes_1) { GildedRose.for('Backstage passes to a TAFKAL80ETC concert', 11, 25) }
+      let(:backstage_passes_2) { GildedRose.for('Backstage passes to a TAFKAL80ETC concert', 10, 25) }
+      let(:backstage_passes_3) { GildedRose.for('Backstage passes to a TAFKAL80ETC concert', 6, 25) }
+      let(:backstage_passes_4) { GildedRose.for('Backstage passes to a TAFKAL80ETC concert', 5, 25) }
+      let(:backstage_passes_5) { GildedRose.for('Backstage passes to a TAFKAL80ETC concert', 1, 25) }
+      let(:backstage_passes_6) { GildedRose.for('Backstage passes to a TAFKAL80ETC concert', 0, 25) }
+      let(:backstage_passes_7) { GildedRose.for('Backstage passes to a TAFKAL80ETC concert', -1, 25) }
+      let(:backstage_passes_8) { GildedRose.for('Backstage passes to a TAFKAL80ETC concert', 7, 49) }
+      let(:backstage_passes_9) { GildedRose.for('Backstage passes to a TAFKAL80ETC concert', 2, 48) }
 
       before do
-        gilded_rose = GildedRose.new([backstage_passes_1, backstage_passes_2, backstage_passes_3,
-                                      backstage_passes_4, backstage_passes_5, backstage_passes_6,
-                                      backstage_passes_7, backstage_passes_8, backstage_passes_9])
-        gilded_rose.update_quality
+        items = [backstage_passes_1, backstage_passes_2, backstage_passes_3,
+                 backstage_passes_4, backstage_passes_5, backstage_passes_6,
+                 backstage_passes_7, backstage_passes_8, backstage_passes_9]
+        items.each { |item| item.update_quality }
       end
 
       context 'when sell_in is greater than 10' do
@@ -136,13 +136,13 @@ RSpec.describe GildedRose do
     end
 
     context 'when the item is Sulfuras' do
-      let(:sulfuras_1) { Item.new('Sulfuras, Hand of Ragnaros', 100, 80) }
-      let(:sulfuras_2) { Item.new('Sulfuras, Hand of Ragnaros', 0, 80) }
-      let(:sulfuras_3) { Item.new('Sulfuras, Hand of Ragnaros', -100, 80) }
+      let(:sulfuras_1) { GildedRose.for('Sulfuras, Hand of Ragnaros', 100, 80) }
+      let(:sulfuras_2) { GildedRose.for('Sulfuras, Hand of Ragnaros', 0, 80) }
+      let(:sulfuras_3) { GildedRose.for('Sulfuras, Hand of Ragnaros', -100, 80) }
 
       before do
-        gilded_rose = GildedRose.new([sulfuras_1, sulfuras_2, sulfuras_3])
-        gilded_rose.update_quality
+        items = [sulfuras_1, sulfuras_2, sulfuras_3]
+        items.each { |item| item.update_quality }
       end
 
       context 'when sell_in in the range -100..100' do
@@ -155,16 +155,16 @@ RSpec.describe GildedRose do
     end
 
     context 'when the item is Conjured' do
-      let(:conjured_1) { Item.new('Conjured Mana Cake', 2, 25) }
-      let(:conjured_2) { Item.new('Conjured Mana Cake', 0, 25) }
-      let(:conjured_3) { Item.new('Conjured Mana Cake', -1, 25) }
-      let(:conjured_4) { Item.new('Conjured Mana Cake', 0, 3) }
-      let(:conjured_5) { Item.new('Conjured Mana Cake', 2, 0) }
+      let(:conjured_1) { GildedRose.for('Conjured Mana Cake', 2, 25) }
+      let(:conjured_2) { GildedRose.for('Conjured Mana Cake', 0, 25) }
+      let(:conjured_3) { GildedRose.for('Conjured Mana Cake', -1, 25) }
+      let(:conjured_4) { GildedRose.for('Conjured Mana Cake', 0, 3) }
+      let(:conjured_5) { GildedRose.for('Conjured Mana Cake', 2, 0) }
 
       before do
-        gilded_rose = GildedRose.new([conjured_1, conjured_2, conjured_3,
-                                      conjured_4, conjured_5])
-        gilded_rose.update_quality
+        items = [conjured_1, conjured_2, conjured_3,
+                 conjured_4, conjured_5]
+        items.each { |item| item.update_quality }
       end
 
       context 'when sell_in is greater than 0' do
