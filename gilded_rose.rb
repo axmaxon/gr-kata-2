@@ -8,7 +8,7 @@ module GildedRose
       @quality = quality
     end
 
-    def to_s()
+    def to_s
       "#{@name}, #{@sell_in}, #{@quality}"
     end
   end
