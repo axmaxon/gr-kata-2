@@ -1,4 +1,6 @@
 module GildedRose
+  MIN_ITEM_QUALITY = 0
+  MAX_ITEM_QUALITY = 50
   class Item
     attr_accessor :name, :sell_in, :quality
 
@@ -83,15 +85,13 @@ module GildedRose
   private
 
   def increase_quality(value)
-    value.times do
-      @quality += 1 if @quality < 50
-    end
+    @quality += value
+    @quality = MAX_ITEM_QUALITY if @quality > MAX_ITEM_QUALITY
   end
 
   def decrease_quality(value)
-    value.times do
-      @quality -= 1 if @quality > 0
-    end
+    @quality -= value
+    @quality = MIN_ITEM_QUALITY if @quality < MIN_ITEM_QUALITY
   end
 
   def decrease_sell_in
